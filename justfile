@@ -1,3 +1,5 @@
+alias r:=run
+
 # List all available tasks by default
 @default:
     just --list
@@ -39,8 +41,17 @@
     go mod tidy
     go mod download
     go install github.com/air-verse/air@latest
+    go install github.com/swaggo/swag/cmd/swag@latest
 
+# 📖 Generate Swagger documentation
+@swag:
+    @echo "Generating Swagger documentation..."
+    swag init --dir ./cmd/server --parseDependency --parseInternal
+    @echo "Swagger documentation generated successfully."
+
+# 🏃‍♂️ Run the backend server
 @run:
     just startdb
+    just swag
     @echo "Running the Backend Server..."
     air
