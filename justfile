@@ -33,3 +33,14 @@
     just stopdb
     just startdb
 
+# 📦 Install dependencies
+@install:
+    @echo "Installing dependencies..."
+    go mod tidy
+    go mod download
+    go install github.com/air-verse/air@latest
+
+@run:
+    just startdb
+    @echo "Running the Backend Server..."
+    air
