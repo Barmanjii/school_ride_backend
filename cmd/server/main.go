@@ -1,14 +1,31 @@
 package main
 
 import (
-	"school_ride_backend/internal/handler"
+	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+
+	"school_ride_backend/internal/config"
+	"school_ride_backend/internal/handler"
 )
 
 func main() {
-    router := gin.Default() // Create a new Gin router instance
-	router.Use(gin.Logger()) // Use the logger middleware for logging requests
-    handler.RegisterRoutes(router) // Register the routes defined in the handler package
-    router.Run(":8000") // Start the server on port 8000
+	if err := godotenv.Load(); err != nil {
+		log.Println("⚠️  No .env file found, continuing...")
+	}
+
+	config.InitDB()
+	defer config.DB.Close()
+
+	r := gin.Default()
+	handler.RegisterRoutes(r)
+
+	port := os.Getenv("PORT")
+	// Default to port 8080 if not set
+	if port == "" {
+		port = "8080"
+	}
+	r.Run(":" + port)
 }
