@@ -42,3 +42,29 @@ To connect to the database and visualize tables, you can install [DBeaver](https
 ## Running the Backend Locally
 
 To run the backend locally, you need to have [`air`](https://github.com/cosmtrek/air) (installed automatically by `just install`). If you encounter any package errors, please consult the [air documentation](https://github.com/cosmtrek/air#installation), as these are most likely related to your system's PATH configuration.
+
+## API Documentation
+
+This project uses [swaggo/swag](https://github.com/swaggo/swag) to generate interactive API documentation, similar to FastAPI's Swagger UI.
+
+To generate and serve the API docs:
+
+1. Install `swag` CLI if you haven't already:
+
+    ```sh
+    go install github.com/swaggo/swag/cmd/swag@latest
+    ```
+
+2. Generate the documentation:
+
+    ```sh
+    swag init # Make sure the current parent have the main.go or just change directory and run it again.
+    ```
+
+3. Start the backend server (e.g., with `just startdb`). The Swagger UI will be available at:
+
+    ```
+    http://localhost:8080/swagger/index.html
+    ```
+
+You can now explore and test all available API endpoints directly from the browser.
