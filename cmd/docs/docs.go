@@ -54,12 +54,31 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "schools"
+                    "Schools"
                 ],
-                "summary": "List schools",
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.School"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new school",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schools"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "type": "array",
                             "items": {

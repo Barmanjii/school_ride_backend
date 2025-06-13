@@ -55,9 +55,21 @@ paths:
             items:
               $ref: '#/definitions/model.School'
             type: array
-      summary: List schools
       tags:
-      - schools
+      - Schools
+    post:
+      description: Create a new school
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            items:
+              $ref: '#/definitions/model.School'
+            type: array
+      tags:
+      - Schools
 securityDefinitions:
   BasicAuth:
     type: basic
