@@ -18,6 +18,7 @@ func RegisterRoutes(router *gin.Engine) {
         school := v1.Group("/schools")
         {
 			school.POST("/", CreateSchoolHandler)
+            school.GET("/", GetSchoolsHandler)
         }
     }
 }

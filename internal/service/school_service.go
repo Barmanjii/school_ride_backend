@@ -26,3 +26,28 @@ func CreateSchool(ctx context.Context, school *model.School) error {
     }
     return nil
 }
+
+func GetAllSchools(ctx context.Context) ([]model.School, error) {
+    sql := `SELECT id, name, code, address_id FROM school`
+
+    rows, err := config.DB.Query(ctx, sql)
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var schools []model.School
+    for rows.Next() {
+        var school model.School
+        if err := rows.Scan(&school.ID, &school.Name, &school.Code, &school.AddressID); err != nil {
+            return nil, err
+        }
+        schools = append(schools, school)
+    }
+
+    if err := rows.Err(); err != nil {
+        return nil, err
+    }
+
+    return schools, nil
+}
