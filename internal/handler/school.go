@@ -10,12 +10,12 @@ import (
 )
 
 // GetSchools godoc
-// @Summary      List schools
-// @Description  Get all schools
-// @Tags         schools
-// @Produce      json
-// @Success      200  {array}  model.School
-// @Router       /schools [get]
+//	@Summary		List schools
+//	@Description	Get all schools
+//	@Tags			schools
+//	@Produce		json
+//	@Success		200	{array}	model.School
+//	@Router			/schools [get]
 func CreateSchoolHandler(c *gin.Context) {
     var school model.School
     if err := c.ShouldBindJSON(&school); err != nil {
