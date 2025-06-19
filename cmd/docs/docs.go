@@ -76,6 +76,17 @@ const docTemplate = `{
                 "tags": [
                     "Schools"
                 ],
+                "parameters": [
+                    {
+                        "description": "School object",
+                        "name": "school",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.School"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Created",

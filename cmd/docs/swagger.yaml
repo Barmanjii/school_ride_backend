@@ -59,6 +59,13 @@ paths:
       - Schools
     post:
       description: Create a new school
+      parameters:
+      - description: School object
+        in: body
+        name: school
+        required: true
+        schema:
+          $ref: '#/definitions/model.School'
       produces:
       - application/json
       responses:

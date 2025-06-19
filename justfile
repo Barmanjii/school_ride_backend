@@ -5,7 +5,7 @@ alias r:=run
     just --list
 
 # 🔧 Prepare environment with Postgres
-@prepare:
+@preparedb:
     docker run --name postgres16 -p 5434:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:16
 
 # 🛠 Create Database inside running container
@@ -46,7 +46,7 @@ alias r:=run
 # 📖 Generate Swagger documentation
 @swag:
     @echo "Generating Swagger documentation..."
-    swag init -g ./cmd/server/main.go -o cmd/docs
+    swag init --dir ./cmd/server --parseDependency --parseInternal
     swag fmt
     @echo "Swagger documentation generated successfully."
 
