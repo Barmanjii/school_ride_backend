@@ -33,8 +33,8 @@ import (
 
 //	@securityDefinitions.basic	BasicAuth
 
-//	@externalDocs.description	OpenAPI
-//	@externalDocs.url			https://swagger.io/resources/open-api/
+// @externalDocs.description	OpenAPI
+// @externalDocs.url			https://swagger.io/resources/open-api/
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("⚠️  No .env file found, continuing...")
@@ -43,13 +43,23 @@ func main() {
 	config.InitDB()
 	defer config.DB.Close()
 
-	r := gin.Default()
+	// NOTE (Vijay barman, 19th Jun 2025): Following the docs - https://github.com/gin-gonic/gin/blob/master/docs/doc.md#using-middleware
+
+	r := gin.New() // Updated this as per the gin documentation
+
+	// Global middleware
+	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
+	// By default gin.DefaultWriter = os.Stdout
+	r.Use(gin.Logger())
+
+	// Recovery middleware recovers from any panics and writes a 500 if there was one.
+	r.Use(gin.Recovery())
 	handler.RegisterRoutes(r)
 
 	port := os.Getenv("PORT")
 
-	 // Swagger endpoint
-    r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// Swagger endpoint
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	// Default to port 8080 if not set
 	if port == "" {
 		port = "8080"

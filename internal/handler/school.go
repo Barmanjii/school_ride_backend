@@ -33,7 +33,8 @@ func GetSchoolsHandler(c *gin.Context) {
 //	@Description	Create a new school
 //	@Tags			Schools
 //	@Produce		json
-//	@Success		201	{array}	model.School
+//	@Param			school	body	model.School	true	"School object"
+//	@Success		201		{array}	model.School
 //	@Router			/schools [post]
 func CreateSchoolHandler(c *gin.Context) {
     var school model.School

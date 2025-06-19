@@ -13,10 +13,10 @@ just install      # Installs Go dependencies
 
 Next, prepare a PostgreSQL 16 database using Docker:
 
-Start a PostgreSQL 16 container with Docker:
+Start a PostgreSQL 16 container with Docker. If you encounter a port conflict error, it may be because your system is already using port 5432 (the default PostgreSQL port). In that case, either stop the service using that port or modify the Docker command to use a different port (e.g., 5434) to avoid conflicts.
 
 ```sh
-just prepare
+just preparedb
 ```
 
 This command will run:
@@ -28,7 +28,7 @@ docker run --name school_ride_postgres -e POSTGRES_PASSWORD=yourpassword -p 5432
 Create the database and set up the schema:
 
 ```sh
-just create-db    # Creates the database
+just createdb    # Creates the database
 ```
 
 To start the development server:
