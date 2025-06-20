@@ -46,7 +46,7 @@ alias r:=run
 # 📖 Generate Swagger documentation
 @swag:
     @echo "Generating Swagger documentation..."
-    swag init -g ./cmd/server/main.go -o ./cmd/docs/
+    swag init --dir ./cmd/server -o ./cmd/docs/
     swag fmt
     @echo "Swagger documentation generated successfully."
 
