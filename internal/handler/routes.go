@@ -9,16 +9,20 @@ func RegisterRoutes(router *gin.Engine) {
 	// Register the routes for the application
 
 	// NOTE: Vijay Barman 10th June - Not Creating the group for healthz endpoint
-    router.GET("/healthz/ping", Healthz)
+	router.GET("/healthz/ping", Healthz)
 
-
-    v1 := router.Group("/api/v1")
-    {
-        // School routes
-        school := v1.Group("/schools")
-        {
+	v1 := router.Group("/api/v1")
+	{
+		// School routes
+		school := v1.Group("/schools")
+		{
 			school.POST("/", CreateSchoolHandler)
-            school.GET("/", GetSchoolsHandler)
-        }
-    }
+			school.GET("/", GetSchoolsHandler)
+		}
+		// Address routes
+		address := v1.Group("/addresses")
+		{
+			address.GET("/", GetAddressesHandler)
+		}
+	}
 }
