@@ -7,6 +7,7 @@ import (
 )
 
 // Healthz godoc
+//
 //	@Summary		Health check endpoint
 //	@Description	Responds with a simple message to indicate the service is running
 //	@Tags			health
