@@ -43,11 +43,10 @@ func CreateAddressHandler(c *gin.Context) {
 	}
 
 	// Insert into DB
-	createdAddress, err := service.CreateAddress(c.Request.Context(), &address)
-	if err != nil {
+	if err := service.CreateAddress(c.Request.Context(), &address); err != nil {
 		utils.ResponseBody(c, 500, "Failed to create address", nil)
 		return
 	}
 
-	utils.ResponseBody(c, 201, "Address created successfully", createdAddress)
+	utils.ResponseBody(c, 201, "Address created successfully", nil)
 }

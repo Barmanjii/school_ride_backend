@@ -16,7 +16,7 @@ func CreateSchool(ctx context.Context, school *model.School) error {
 		return err
 	}
 	if cmdTag.RowsAffected() != 1 {
-		return errors.New("no rows affected")
+		return errors.New("no rows created for school")
 	}
 	return nil
 }

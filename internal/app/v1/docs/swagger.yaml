@@ -5,13 +5,15 @@ definitions:
         type: string
       country:
         type: string
-      id:
+      flat:
+        type: string
+      landmark:
+        type: string
+      pincode:
         type: string
       state:
         type: string
       street:
-        type: string
-      zip_code:
         type: string
     type: object
   model.School:
@@ -19,8 +21,6 @@ definitions:
       address_id:
         type: string
       code:
-        type: string
-      id:
         type: string
       name:
         type: string

@@ -160,16 +160,19 @@ const docTemplate = `{
                 "country": {
                     "type": "string"
                 },
-                "id": {
+                "flat": {
+                    "type": "string"
+                },
+                "landmark": {
+                    "type": "string"
+                },
+                "pincode": {
                     "type": "string"
                 },
                 "state": {
                     "type": "string"
                 },
                 "street": {
-                    "type": "string"
-                },
-                "zip_code": {
                     "type": "string"
                 }
             }
@@ -181,9 +184,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "code": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 },
                 "name": {
