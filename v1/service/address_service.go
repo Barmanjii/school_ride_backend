@@ -2,8 +2,7 @@ package service
 
 import (
 	"context"
-
-	"school_ride_backend/internal/model"
+	"school_ride_backend/v1/model"
 )
 
 func CreateAddress(ctx context.Context, address *model.Address) {

@@ -7,10 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"school_ride_backend/internal/config"
-	"school_ride_backend/internal/handler"
-
-	_ "school_ride_backend/cmd/docs"
+	"school_ride_backend/v1/config"
+	_ "school_ride_backend/v1/docs"
+	"school_ride_backend/v1/handler"
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -45,24 +44,28 @@ func main() {
 
 	// NOTE (Vijay barman, 19th Jun 2025): Following the docs - https://github.com/gin-gonic/gin/blob/master/docs/doc.md#using-middleware
 
-	r := gin.New() // Updated this as per the gin documentation
+	// Creates a router without any middleware by default
+	router := gin.New()
+
+	// NOTE (Vijay Barman, 23rd June 2025): This is simply like cross-origin resource sharing (CORS) in the browser.
+	//   router.SetTrustedProxies([]string{"192.168.1.2"}) // Set trusted proxies if needed, otherwise remove this line
 
 	// Global middleware
 	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
 	// By default gin.DefaultWriter = os.Stdout
-	r.Use(gin.Logger())
+	router.Use(gin.Logger())
 
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
-	r.Use(gin.Recovery())
-	handler.RegisterRoutes(r)
+	router.Use(gin.Recovery())
+	handler.RegisterRoutes(router)
 
 	port := os.Getenv("PORT")
 
 	// Swagger endpoint
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	// Default to port 8080 if not set
 	if port == "" {
 		port = "8080"
 	}
-	r.Run(":" + port)
+	router.Run(":" + port)
 }
