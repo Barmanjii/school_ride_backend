@@ -46,7 +46,7 @@ alias r:=run
 # 📖 Generate Swagger documentation
 @swag:
     @echo "Generating Swagger documentation..."
-    swag init --dir v1/ -o v1/docs/
+    swag init --dir cmd/school_ride_backend/ -o internal/app/v1/docs/
     swag fmt
     @echo "Swagger documentation generated successfully."
 

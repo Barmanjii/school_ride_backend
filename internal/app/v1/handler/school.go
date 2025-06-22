@@ -2,9 +2,9 @@ package handler
 
 import (
 	"net/http"
-	"school_ride_backend/v1/model"
-	"school_ride_backend/v1/service"
-	"school_ride_backend/v1/utils"
+	"school_ride_backend/internal/app/v1/model"
+	"school_ride_backend/internal/app/v1/service"
+	"school_ride_backend/internal/app/v1/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +15,7 @@ import (
 //	@Tags			Schools
 //	@Produce		json
 //	@Success		200	{array}	model.School
+//	@BasePath		/api/v1
 //	@Router			/schools [get]
 func GetSchoolsHandler(c *gin.Context) {
 	schools, err := service.GetAllSchools(c.Request.Context())
