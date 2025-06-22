@@ -27,7 +27,7 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
-  /addresses:
+  /api/v1/addresses/:
     get:
       description: Retrieves a list of all addresses
       produces:
@@ -40,22 +40,7 @@ paths:
       summary: Get all addresses
       tags:
       - addresses
-  /healthz/ping:
-    get:
-      description: Responds with a simple message to indicate the service is running
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: pong response
-          schema:
-            additionalProperties:
-              type: string
-            type: object
-      summary: Health check endpoint
-      tags:
-      - health
-  /schools:
+  /api/v1/schools/:
     get:
       description: Get all schools
       produces:
@@ -63,10 +48,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            items:
-              $ref: '#/definitions/model.School'
-            type: array
       tags:
       - Schools
     post:
@@ -89,6 +70,21 @@ paths:
             type: array
       tags:
       - Schools
+  /healthz/ping:
+    get:
+      description: Responds with a simple message to indicate the service is running
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: pong response
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health check endpoint
+      tags:
+      - health
 securityDefinitions:
   BasicAuth:
     type: basic

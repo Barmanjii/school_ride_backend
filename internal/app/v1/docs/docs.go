@@ -24,7 +24,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/addresses": {
+        "/api/v1/addresses/": {
             "get": {
                 "description": "Retrieves a list of all addresses",
                 "produces": [
@@ -44,30 +44,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/healthz/ping": {
-            "get": {
-                "description": "Responds with a simple message to indicate the service is running",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "health"
-                ],
-                "summary": "Health check endpoint",
-                "responses": {
-                    "200": {
-                        "description": "pong response",
-                        "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/schools": {
+        "/api/v1/schools/": {
             "get": {
                 "description": "Get all schools",
                 "produces": [
@@ -78,13 +55,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.School"
-                            }
-                        }
+                        "description": "OK"
                     }
                 }
             },
@@ -114,6 +85,29 @@ const docTemplate = `{
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/model.School"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/healthz/ping": {
+            "get": {
+                "description": "Responds with a simple message to indicate the service is running",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health check endpoint",
+                "responses": {
+                    "200": {
+                        "description": "pong response",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
                             }
                         }
                     }
