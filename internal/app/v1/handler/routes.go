@@ -23,6 +23,7 @@ func RegisterRoutes(router *gin.Engine) {
 		address := v1.Group("/addresses")
 		{
 			address.GET("/", GetAddressesHandler)
+			address.POST("/", CreateAddressHandler)
 		}
 	}
 }

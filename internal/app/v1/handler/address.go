@@ -18,3 +18,19 @@ import (
 func GetAddressesHandler(c *gin.Context) {
 	utils.ResponseBody(c, 200, "GetAddressesHandler not implemented yet", nil)
 }
+
+// CreateAddressHandler godoc
+//
+//	@Summary		Create a new address
+//	@Description	Creates a new address with the provided details
+//	@Tags			addresses
+//	@Accept			json
+//	@Produce		json
+//	@Param			address	body	model.Address	true	"Address details"
+//	@Success		201
+//	@Failure		400
+//	@Failure		500
+//	@Router			/api/v1/addresses/ [post]
+func CreateAddressHandler(c *gin.Context) {
+	utils.ResponseBody(c, 201, "CreateAddressHandler not implemented yet", nil)
+}
