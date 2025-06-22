@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"school_ride_backend/v1/config"
-	_ "school_ride_backend/v1/docs"
-	"school_ride_backend/v1/handler"
+	"school_ride_backend/internal/app/v1/config"
+	_ "school_ride_backend/internal/app/v1/docs"
+	"school_ride_backend/internal/app/v1/handler"
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -27,13 +27,12 @@ import (
 //	@license.name	Apache 2.0
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
-//	@host		localhost:8080
-//	@BasePath	/api/v1
+//	@host	localhost:8080
 
 //	@securityDefinitions.basic	BasicAuth
 
-// @externalDocs.description	OpenAPI
-// @externalDocs.url			https://swagger.io/resources/open-api/
+//	@externalDocs.description	OpenAPI
+//	@externalDocs.url			https://swagger.io/resources/open-api/
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("⚠️  No .env file found, continuing...")

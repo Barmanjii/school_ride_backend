@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 	"errors"
-	"school_ride_backend/v1/config"
-	"school_ride_backend/v1/model"
+	"school_ride_backend/internal/app/v1/config"
+	"school_ride_backend/internal/app/v1/model"
 
 	"github.com/google/uuid"
 )
