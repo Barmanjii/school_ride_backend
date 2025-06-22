@@ -5,7 +5,8 @@ import (
 	"school_ride_backend/internal/app/v1/model"
 )
 
-func CreateAddress(ctx context.Context, address *model.Address) {
+func CreateAddress(ctx context.Context, address *model.Address) (*model.Address, error) {
+	return address, nil
 }
 
 func GetAddress(ctx context.Context, id string) (*model.Address, error) {

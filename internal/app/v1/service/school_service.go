@@ -5,18 +5,13 @@ import (
 	"errors"
 	"school_ride_backend/internal/app/v1/config"
 	"school_ride_backend/internal/app/v1/model"
-
-	"github.com/google/uuid"
 )
 
 func CreateSchool(ctx context.Context, school *model.School) error {
-	if school.ID == uuid.Nil {
-		school.ID = uuid.New()
-	}
 
-	sql := `INSERT INTO school (id, name, code, address_id) VALUES ($1, $2, $3, $4)`
+	sql := `INSERT INTO school (name, code, address_id) VALUES ($1, $2, $3)`
 
-	cmdTag, err := config.DB.Exec(ctx, sql, school.ID, school.Name, school.Code, school.AddressID)
+	cmdTag, err := config.DB.Exec(ctx, sql, school.Name, school.Code, school.AddressID)
 	if err != nil {
 		return err
 	}
@@ -38,7 +33,7 @@ func GetAllSchools(ctx context.Context) ([]model.School, error) {
 	var schools []model.School
 	for rows.Next() {
 		var school model.School
-		if err := rows.Scan(&school.ID, &school.Name, &school.Code, &school.AddressID); err != nil {
+		if err := rows.Scan(&school.Name, &school.Code, &school.AddressID); err != nil {
 			return nil, err
 		}
 		schools = append(schools, school)
