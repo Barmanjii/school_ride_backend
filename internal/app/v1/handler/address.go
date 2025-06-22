@@ -7,14 +7,14 @@ import (
 )
 
 // GetAddressesHandler godoc
+//
 //	@Summary		Get all addresses
 //	@Description	Retrieves a list of all addresses
 //	@Tags			addresses
 //	@Produce		json
 //	@Success		200
 //	@Failure		500
-//	@BasePath		/api/v1
-//	@Router			/addresses [get]
+//	@Router			/api/v1/addresses/ [get]
 func GetAddressesHandler(c *gin.Context) {
 	utils.ResponseBody(c, 200, "GetAddressesHandler not implemented yet", nil)
 }

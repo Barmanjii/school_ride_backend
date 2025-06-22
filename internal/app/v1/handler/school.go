@@ -14,9 +14,8 @@ import (
 //	@Description	Get all schools
 //	@Tags			Schools
 //	@Produce		json
-//	@Success		200	{array}	model.School
-//	@BasePath		/api/v1
-//	@Router			/schools [get]
+//	@Success		200
+//	@Router			/api/v1/schools/ [get]
 func GetSchoolsHandler(c *gin.Context) {
 	schools, err := service.GetAllSchools(c.Request.Context())
 	if err != nil {
@@ -37,7 +36,7 @@ func GetSchoolsHandler(c *gin.Context) {
 //	@Produce		json
 //	@Param			school	body	model.School	true	"School object"
 //	@Success		201		{array}	model.School
-//	@Router			/schools [post]
+//	@Router			/api/v1/schools/ [post]
 func CreateSchoolHandler(c *gin.Context) {
 	var school model.School
 	if err := c.ShouldBindJSON(&school); err != nil {
