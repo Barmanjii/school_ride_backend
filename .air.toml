@@ -3,7 +3,7 @@ root = "."
 [build]
   args_bin = []
   bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ./cmd/server"
+  cmd = "go build -o ./tmp/main ./v1"
   delay = 100
   exclude_dir = ["tmp"]
   exclude_file = []

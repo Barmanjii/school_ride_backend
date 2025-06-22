@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"net/http"
+	"school_ride_backend/v1/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,5 +15,5 @@ import (
 // @Failure		500
 // @Router			/addresses [get]
 func GetAddressesHandler(c *gin.Context) {
-	c.JSON(http.StatusOK, "helloworld")
+	utils.ResponseBody(c, 200, "GetAddressesHandler not implemented yet", nil)
 }

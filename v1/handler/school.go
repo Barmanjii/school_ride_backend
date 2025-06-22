@@ -2,15 +2,15 @@ package handler
 
 import (
 	"net/http"
-
-	"school_ride_backend/internal/model"
-	"school_ride_backend/internal/service"
-	"school_ride_backend/internal/utils"
+	"school_ride_backend/v1/model"
+	"school_ride_backend/v1/service"
+	"school_ride_backend/v1/utils"
 
 	"github.com/gin-gonic/gin"
 )
 
 // GetSchoolsHandler godoc
+//
 //	@Description	Get all schools
 //	@Tags			Schools
 //	@Produce		json
@@ -30,6 +30,7 @@ func GetSchoolsHandler(c *gin.Context) {
 }
 
 // CreateSchool godoc
+//
 //	@Description	Create a new school
 //	@Tags			Schools
 //	@Produce		json
