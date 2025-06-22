@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"school_ride_backend/internal/app/v1/model"
+	"school_ride_backend/internal/app/v1/service"
 	"school_ride_backend/internal/app/v1/utils"
 
 	"github.com/gin-gonic/gin"
@@ -32,5 +34,20 @@ func GetAddressesHandler(c *gin.Context) {
 //	@Failure		500
 //	@Router			/api/v1/addresses/ [post]
 func CreateAddressHandler(c *gin.Context) {
-	utils.ResponseBody(c, 201, "CreateAddressHandler not implemented yet", nil)
+	var address model.Address
+
+	// Validate input
+	if err := c.ShouldBindJSON(&address); err != nil {
+		utils.ResponseBody(c, 400, "Invalid request payload", nil)
+		return
+	}
+
+	// Insert into DB
+	createdAddress, err := service.CreateAddress(c.Request.Context(), &address)
+	if err != nil {
+		utils.ResponseBody(c, 500, "Failed to create address", nil)
+		return
+	}
+
+	utils.ResponseBody(c, 201, "Address created successfully", createdAddress)
 }
