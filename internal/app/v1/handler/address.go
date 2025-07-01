@@ -18,7 +18,13 @@ import (
 //	@Failure		500
 //	@Router			/api/v1/addresses/ [get]
 func GetAddressesHandler(c *gin.Context) {
-	utils.ResponseBody(c, 200, "GetAddressesHandler not implemented yet", nil)
+	addresses, err := service.ListAddresses(c.Request.Context())
+	if err != nil {
+		utils.ResponseBody(c, 500, "Failed to retrieve addresses", nil)
+		return
+	}
+
+	utils.ResponseBody(c, 200, "Addresses retrieved successfully", addresses)
 }
 
 // CreateAddressHandler godoc

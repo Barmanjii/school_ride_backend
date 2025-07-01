@@ -30,5 +30,27 @@ func DeleteAddress(ctx context.Context, id string) error {
 	return nil
 }
 func ListAddresses(ctx context.Context) ([]*model.Address, error) {
-	return nil, nil
+	query := `
+		SELECT place_id, full_address, lat, lng
+		FROM addresses`
+	rows, err := config.DB.Query(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var addresses []*model.Address
+	for rows.Next() {
+		var address model.Address
+		if err := rows.Scan(&address.PlaceID, &address.FullAddress, &address.Latitude, &address.Longitude); err != nil {
+			return nil, err
+		}
+		addresses = append(addresses, &address)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return addresses, nil
 }
