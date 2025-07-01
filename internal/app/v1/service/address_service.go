@@ -20,15 +20,7 @@ func CreateAddress(ctx context.Context, address *model.Address) error {
 	}
 	return nil
 }
-func GetAddress(ctx context.Context, id string) (*model.Address, error) {
-	return nil, nil
-}
-func UpdateAddress(ctx context.Context, address *model.Address) error {
-	return nil
-}
-func DeleteAddress(ctx context.Context, id string) error {
-	return nil
-}
+
 func ListAddresses(ctx context.Context) ([]*model.Address, error) {
 	query := `
 		SELECT place_id, full_address, lat, lng
@@ -53,4 +45,15 @@ func ListAddresses(ctx context.Context) ([]*model.Address, error) {
 	}
 
 	return addresses, nil
+}
+
+// Will be used in the future
+func GetAddress(ctx context.Context, id string) (*model.Address, error) {
+	return nil, nil
+}
+func UpdateAddress(ctx context.Context, address *model.Address) error {
+	return nil
+}
+func DeleteAddress(ctx context.Context, id string) error {
+	return nil
 }
