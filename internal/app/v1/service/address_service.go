@@ -21,9 +21,9 @@ func CreateAddress(ctx context.Context, address *model.Address) error {
 	return nil
 }
 
-func ListAddresses(ctx context.Context) ([]*model.Address, error) {
+func ListAddresses(ctx context.Context) ([]*model.AddressInDatabase, error) {
 	query := `
-		SELECT place_id, full_address, lat, lng
+		SELECT id, place_id, full_address, lat, lng
 		FROM addresses`
 	rows, err := config.DB.Query(ctx, query)
 	if err != nil {
@@ -31,10 +31,10 @@ func ListAddresses(ctx context.Context) ([]*model.Address, error) {
 	}
 	defer rows.Close()
 
-	var addresses []*model.Address
+	var addresses []*model.AddressInDatabase
 	for rows.Next() {
-		var address model.Address
-		if err := rows.Scan(&address.PlaceID, &address.FullAddress, &address.Latitude, &address.Longitude); err != nil {
+		var address model.AddressInDatabase
+		if err := rows.Scan(&address.ID, &address.PlaceID, &address.FullAddress, &address.Latitude, &address.Longitude); err != nil {
 			return nil, err
 		}
 		addresses = append(addresses, &address)
