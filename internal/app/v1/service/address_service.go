@@ -9,9 +9,9 @@ import (
 
 func CreateAddress(ctx context.Context, address *model.Address) error {
 	query := `
-		INSERT INTO addresses (flat, street, landmark, city, state, pincode, country)
-		VALUES ($1, $2, $3, $4, $5, $6, $7)`
-	cmdTag, err := config.DB.Exec(ctx, query, address.Flat, address.Street, address.Landmark, address.City, address.State, address.Pincode, address.Country)
+		INSERT INTO addresses (place_id, full_address, lat, lng)
+		VALUES ($1, $2, $3, $4)`
+	cmdTag, err := config.DB.Exec(ctx, query, address.PlaceID, address.FullAddress, address.Latitude, address.Longitude)
 	if err != nil {
 		return err
 	}

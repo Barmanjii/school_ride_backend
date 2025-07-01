@@ -154,25 +154,16 @@ const docTemplate = `{
         "model.Address": {
             "type": "object",
             "properties": {
-                "city": {
+                "full_address": {
                     "type": "string"
                 },
-                "country": {
+                "lat": {
                     "type": "string"
                 },
-                "flat": {
+                "lng": {
                     "type": "string"
                 },
-                "landmark": {
-                    "type": "string"
-                },
-                "pincode": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "street": {
+                "place_id": {
                     "type": "string"
                 }
             }
