@@ -26,7 +26,7 @@ func GetAddressesHandler(c *gin.Context) {
 	}
 
 	if len(addresses) == 0 {
-		utils.ResponseBody(c, http.StatusOK, "No addresss found", []model.School{})
+		utils.ResponseBody(c, http.StatusOK, "No addresss found", []model.Address{})
 		return
 	}
 	utils.ResponseBody(c, 200, "Addresses retrieved successfully", addresses)
