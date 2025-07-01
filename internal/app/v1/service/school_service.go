@@ -21,7 +21,7 @@ func CreateSchool(ctx context.Context, school *model.School) error {
 	return nil
 }
 
-func GetAllSchools(ctx context.Context) ([]model.School, error) {
+func GetAllSchools(ctx context.Context) ([]model.SchoolInDatabase, error) {
 	sql := `SELECT id, name, school_code, address_id FROM school`
 
 	rows, err := config.DB.Query(ctx, sql)
@@ -30,10 +30,10 @@ func GetAllSchools(ctx context.Context) ([]model.School, error) {
 	}
 	defer rows.Close()
 
-	var schools []model.School
+	var schools []model.SchoolInDatabase
 	for rows.Next() {
-		var school model.School
-		if err := rows.Scan(&school.Name, &school.SchoolCode, &school.AddressID); err != nil {
+		var school model.SchoolInDatabase
+		if err := rows.Scan(&school.ID, &school.Name, &school.SchoolCode, &school.AddressID); err != nil {
 			return nil, err
 		}
 		schools = append(schools, school)

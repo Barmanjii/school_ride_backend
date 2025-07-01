@@ -48,5 +48,5 @@ func CreateSchoolHandler(c *gin.Context) {
 		utils.ResponseBody(c, http.StatusInternalServerError, "Failed to create school", nil)
 		return
 	}
-	utils.ResponseBody(c, http.StatusCreated, "School created successfully", school)
+	utils.ResponseBody(c, http.StatusCreated, "School created successfully", nil)
 }
