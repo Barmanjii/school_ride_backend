@@ -21,7 +21,7 @@ import (
 func GetAddressesHandler(c *gin.Context) {
 	addresses, err := service.ListAddresses(c.Request.Context())
 	if err != nil {
-		utils.ResponseBody(c, 500, "Failed to retrieve addresses", nil)
+		utils.ResponseBody(c, 500, "Failed to retrieve address: "+err.Error(), nil)
 		return
 	}
 
@@ -49,7 +49,7 @@ func CreateAddressHandler(c *gin.Context) {
 
 	// Validate input
 	if err := c.ShouldBindJSON(&address); err != nil {
-		utils.ResponseBody(c, 400, "Invalid request payload", nil)
+		utils.ResponseBody(c, 400, "Invalid request payload: "+err.Error(), nil)
 		return
 	}
 

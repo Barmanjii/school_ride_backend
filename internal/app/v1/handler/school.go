@@ -19,7 +19,7 @@ import (
 func GetSchoolsHandler(c *gin.Context) {
 	schools, err := service.ListAllSchools(c.Request.Context())
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		utils.ResponseBody(c, 500, "Failed to retrieve schools: "+err.Error(), nil)
 		return
 	}
 	if len(schools) == 0 {
@@ -40,7 +40,7 @@ func GetSchoolsHandler(c *gin.Context) {
 func CreateSchoolHandler(c *gin.Context) {
 	var school model.School
 	if err := c.ShouldBindJSON(&school); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		utils.ResponseBody(c, 400, "Invalid request payload: "+err.Error(), nil)
 		return
 	}
 

@@ -21,7 +21,7 @@ import (
 func GetStudentsHandler(c *gin.Context) {
 	students, err := service.ListStudents(c.Request.Context())
 	if err != nil {
-		utils.ResponseBody(c, 500, "Failed to retrieve students", nil)
+		utils.ResponseBody(c, 500, "Failed to retrieve students: "+err.Error(), nil)
 		return
 	}
 
