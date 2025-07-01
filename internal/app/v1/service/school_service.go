@@ -10,7 +10,6 @@ import (
 func CreateSchool(ctx context.Context, school *model.School) error {
 
 	sql := `INSERT INTO school (name, school_code, address_id) VALUES ($1, $2, $3)`
-
 	cmdTag, err := config.DB.Exec(ctx, sql, school.Name, school.SchoolCode, school.AddressID)
 	if err != nil {
 		return err
@@ -21,7 +20,7 @@ func CreateSchool(ctx context.Context, school *model.School) error {
 	return nil
 }
 
-func GetAllSchools(ctx context.Context) ([]model.SchoolInDatabase, error) {
+func ListAllSchools(ctx context.Context) ([]model.SchoolInDatabase, error) {
 	sql := `SELECT id, name, school_code, address_id FROM school`
 
 	rows, err := config.DB.Query(ctx, sql)

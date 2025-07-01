@@ -17,7 +17,7 @@ import (
 //	@Success		200
 //	@Router			/api/v1/schools/ [get]
 func GetSchoolsHandler(c *gin.Context) {
-	schools, err := service.GetAllSchools(c.Request.Context())
+	schools, err := service.ListAllSchools(c.Request.Context())
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
