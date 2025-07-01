@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"net/http"
 	"school_ride_backend/internal/app/v1/model"
 	"school_ride_backend/internal/app/v1/service"
 	"school_ride_backend/internal/app/v1/utils"
@@ -24,6 +25,11 @@ func GetStudentsHandler(c *gin.Context) {
 		return
 	}
 
+	if len(students) == 0 {
+		utils.ResponseBody(c, http.StatusOK, "No students found", []model.Student{})
+		return
+	}
+
 	utils.ResponseBody(c, 200, "Students retrieved successfully", students)
 }
 
@@ -44,7 +50,7 @@ func CreateStudentHandler(c *gin.Context) {
 
 	// Validate input
 	if err := c.ShouldBindJSON(&student); err != nil {
-		utils.ResponseBody(c, 400, "Invalid request payload", nil)
+		utils.ResponseBody(c, 400, "Invalid request payload: "+err.Error(), nil)
 		return
 	}
 
