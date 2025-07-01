@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"net/http"
 	"school_ride_backend/internal/app/v1/model"
 	"school_ride_backend/internal/app/v1/service"
 	"school_ride_backend/internal/app/v1/utils"
@@ -24,6 +25,10 @@ func GetAddressesHandler(c *gin.Context) {
 		return
 	}
 
+	if len(addresses) == 0 {
+		utils.ResponseBody(c, http.StatusOK, "No addresss found", []model.School{})
+		return
+	}
 	utils.ResponseBody(c, 200, "Addresses retrieved successfully", addresses)
 }
 
