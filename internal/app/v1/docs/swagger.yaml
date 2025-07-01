@@ -19,6 +19,19 @@ definitions:
       school_code:
         type: string
     type: object
+  model.Student:
+    properties:
+      age:
+        type: integer
+      class:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      school_id:
+        type: string
+    type: object
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
@@ -102,6 +115,42 @@ paths:
             type: array
       tags:
       - Schools
+  /api/v1/students/:
+    get:
+      description: Retrieves a list of all students
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Get all Students
+      tags:
+      - students
+    post:
+      consumes:
+      - application/json
+      description: Creates a new student with the provided details
+      parameters:
+      - description: Student details
+        in: body
+        name: student
+        required: true
+        schema:
+          $ref: '#/definitions/model.Student'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Create a new student
+      tags:
+      - students
   /healthz/ping:
     get:
       description: Responds with a simple message to indicate the service is running

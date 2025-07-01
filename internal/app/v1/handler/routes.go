@@ -25,5 +25,12 @@ func RegisterRoutes(router *gin.Engine) {
 			address.GET("/", GetAddressesHandler)
 			address.POST("/", CreateAddressHandler)
 		}
+
+		// Student routes
+		student := v1.Group("/students")
+		{
+			student.GET("/", GetStudentsHandler)
+			student.POST("/", CreateStudentHandler)
+		}
 	}
 }
