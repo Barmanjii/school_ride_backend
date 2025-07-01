@@ -174,10 +174,10 @@ const docTemplate = `{
                 "address_id": {
                     "type": "string"
                 },
-                "code": {
+                "name": {
                     "type": "string"
                 },
-                "name": {
+                "school_code": {
                     "type": "string"
                 }
             }

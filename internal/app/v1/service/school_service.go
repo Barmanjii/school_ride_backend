@@ -9,9 +9,9 @@ import (
 
 func CreateSchool(ctx context.Context, school *model.School) error {
 
-	sql := `INSERT INTO school (name, code, address_id) VALUES ($1, $2, $3)`
+	sql := `INSERT INTO school (name, school_code, address_id) VALUES ($1, $2, $3)`
 
-	cmdTag, err := config.DB.Exec(ctx, sql, school.Name, school.Code, school.AddressID)
+	cmdTag, err := config.DB.Exec(ctx, sql, school.Name, school.SchoolCode, school.AddressID)
 	if err != nil {
 		return err
 	}
@@ -22,7 +22,7 @@ func CreateSchool(ctx context.Context, school *model.School) error {
 }
 
 func GetAllSchools(ctx context.Context) ([]model.School, error) {
-	sql := `SELECT id, name, code, address_id FROM school`
+	sql := `SELECT id, name, school_code, address_id FROM school`
 
 	rows, err := config.DB.Query(ctx, sql)
 	if err != nil {
@@ -33,7 +33,7 @@ func GetAllSchools(ctx context.Context) ([]model.School, error) {
 	var schools []model.School
 	for rows.Next() {
 		var school model.School
-		if err := rows.Scan(&school.Name, &school.Code, &school.AddressID); err != nil {
+		if err := rows.Scan(&school.Name, &school.SchoolCode, &school.AddressID); err != nil {
 			return nil, err
 		}
 		schools = append(schools, school)

@@ -14,9 +14,9 @@ definitions:
     properties:
       address_id:
         type: string
-      code:
-        type: string
       name:
+        type: string
+      school_code:
         type: string
     type: object
 externalDocs:
