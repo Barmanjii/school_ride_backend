@@ -10,6 +10,35 @@ definitions:
       place_id:
         type: string
     type: object
+  model.Parent:
+    properties:
+      address_id:
+        type: string
+      age:
+        type: integer
+      email_address:
+        type: string
+      emergency_contact_number:
+        type: string
+      full_name:
+        type: string
+      mobile_number:
+        type: string
+      parent_relation:
+        allOf:
+        - $ref: '#/definitions/model.RelationToChild'
+        description: e.g., "Father", "Mother", "Guardian"
+    type: object
+  model.RelationToChild:
+    enum:
+    - Father
+    - Mother
+    - Guardian
+    type: string
+    x-enum-varnames:
+    - RelationFather
+    - RelationMother
+    - RelationGuardian
   model.School:
     properties:
       address_id:
@@ -85,6 +114,42 @@ paths:
       summary: Create a new address
       tags:
       - addresses
+  /api/v1/parents/:
+    get:
+      description: Retrieves a list of all parents
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Get all parents
+      tags:
+      - parents
+    post:
+      consumes:
+      - application/json
+      description: Creates a new parent with the provided details
+      parameters:
+      - description: Parent details
+        in: body
+        name: parent
+        required: true
+        schema:
+          $ref: '#/definitions/model.Parent'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Create a new parent
+      tags:
+      - parents
   /api/v1/schools/:
     get:
       description: Get all schools

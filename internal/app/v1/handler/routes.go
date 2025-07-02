@@ -32,5 +32,12 @@ func RegisterRoutes(router *gin.Engine) {
 			student.GET("/", GetStudentsHandler)
 			student.POST("/", CreateStudentHandler)
 		}
+
+		// Parent routes
+		parent := v1.Group("/parents")
+		{
+			parent.GET("/", GetParentsHandler)
+			parent.POST("/", CreateParentHandler)
+		}
 	}
 }

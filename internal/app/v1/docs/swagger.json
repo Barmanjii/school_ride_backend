@@ -72,6 +72,61 @@
                 }
             }
         },
+        "/api/v1/parents/": {
+            "get": {
+                "description": "Retrieves a list of all parents",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "parents"
+                ],
+                "summary": "Get all parents",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "description": "Creates a new parent with the provided details",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "parents"
+                ],
+                "summary": "Create a new parent",
+                "parameters": [
+                    {
+                        "description": "Parent details",
+                        "name": "parent",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Parent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/api/v1/schools/": {
             "get": {
                 "description": "Get all schools",
@@ -215,6 +270,50 @@
                     "type": "string"
                 }
             }
+        },
+        "model.Parent": {
+            "type": "object",
+            "properties": {
+                "address_id": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                },
+                "email_address": {
+                    "type": "string"
+                },
+                "emergency_contact_number": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "mobile_number": {
+                    "type": "string"
+                },
+                "parent_relation": {
+                    "description": "e.g., \"Father\", \"Mother\", \"Guardian\"",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/model.RelationToChild"
+                        }
+                    ]
+                }
+            }
+        },
+        "model.RelationToChild": {
+            "type": "string",
+            "enum": [
+                "Father",
+                "Mother",
+                "Guardian"
+            ],
+            "x-enum-varnames": [
+                "RelationFather",
+                "RelationMother",
+                "RelationGuardian"
+            ]
         },
         "model.School": {
             "type": "object",
